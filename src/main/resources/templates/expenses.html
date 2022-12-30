@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{/layout.html}">
+<head></head>
+<body>
+<div layout:fragment="contents">
+    <section class="expenseList">
+        <h2>My Expenses</h2>
+        <a id="add_expense" href="newexpense">Add a new expense</a><br/>
+        <p id="no_expenses" th:if="${#lists.isEmpty(expenses)}">You don't have any expenses!</p>
+        <table th:unless="${#lists.isEmpty(expenses)}">
+            <tr>
+                <th>When</th>
+                <th>What</th>
+                <th>Amount Spent</th>
+                <th>Payments Requested</th>
+                <th>Payment Received</th>
+                <th>Nett Expense</th>
+            </tr>
+            <tr th:each="expense : ${expenses}">
+                <td th:id="'date_'+${expense.getId()}" th:text="${expense.getDate()}">date</td>
+
+                <td >
+                    <a th:id="'payment_request_'+${expense.getId()}" th:href="@{paymentrequest(expenseId=${expense.getId()})}"
+                       th:text="${expense.getDescription()}">description</a></td>
+
+                <td th:id="'amount_'+${expense.getId()}" th:text="${expense.getAmount()}" >amount</td>
+                <td th:id="'request_'+${expense.getId()}" th:text="${expense.totalAmountOfPaymentsRequested()}">Payments Requested</td>
+                <td th:id="'received_'+${expense.getId()}" th:text="${expense.totalAmountForPaymentsReceived()}">Payment Received</td>
+                <td th:id="'nett_'+${expense.getId()}" th:text="${expense.totalAmountAvailableForPaymentRequests()}">Nett Expense</td>
+            </tr>
+            <tr>
+                <tfoot>
+                <td  colspan="5">Total Expenses</td>
+                <td id="grand_total" th:text="${total}">Total Expenses</td>
+                </tfoot>
+            </tr>
+        </table>
+    </section>
+</div>
+</body>
+
+</html>

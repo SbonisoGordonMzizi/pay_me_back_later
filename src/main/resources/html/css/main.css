@@ -1,0 +1,112 @@
+body {
+    box-sizing: border-box;
+    margin: 1em;
+    font-family: "Pangolin", sans-serif;
+    background-color: #f0f0f0;
+    width: 90%;
+    padding: 1em;
+    display: inline-block;
+}
+
+form {
+  padding: 20px;
+  width: 33%;
+  border-radius: 10px;
+  background-color: #f2f2f2;
+}
+
+form.inline {
+  padding: 0;
+  width:33%;
+  background-color #fff;
+}
+
+input.inline[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 4px;
+  margin: 2px;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+input {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 2em;
+}
+
+nav a {
+    display: block;
+    padding: 5px 15px;
+    text-align: center;
+    color: #464141;
+}
+
+nav a:hover {
+    background-color: #4CAF50;
+    color: #ffffff;
+}
+
+table {
+    table-layout: fixed;
+    width: 80%;
+    border-collapse: collapse;
+    margin-top: 1em;
+}
+
+td {
+    padding: 1em;
+    text-align: left;
+}
+
+th {
+    padding: 1em;
+    text-align: left;
+    text-decoration: underline;
+}
+
+tfoot {
+    border-top: 1px solid black;
+    font-size: large;
+    font-weight: bold;
+}
+
+div.error {
+    border: 1px solid #888;
+    padding: 20px;
+    margin: 20;
+    color: red;
+    width: 60%;
+}
+
+div.stacktrace {
+    font-size: small;
+    font-family: monospace;
+}

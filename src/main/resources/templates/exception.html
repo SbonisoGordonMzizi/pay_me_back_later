@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{/layout.html}">
+<head></head>
+<body>
+<div layout:fragment="contents">
+    <h2>Ooops! Something bad happened</h2>
+    <p>You should probably go back and try again.
+    And if that doesn't work, hold your breath and call a friend.</p>
+
+    <h3>This is what happened</h3>
+    <div class="error" th:text="${exception.message}"></div>
+    <h4>The fine print</h4>
+    <div class="stacktrace" th:utext="${stacktrace}"></div>
+</div>
+</body>
+
+</html>

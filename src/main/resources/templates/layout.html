@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>WeShare</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Pangolin">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<h1>WeShare</h1>
+<p id="user" th:text="${session.user.email}">person@domain.com</p>
+<nav>
+    <a id="expenses" href="/expenses">Expenses</a>
+    <a id="paymentrequests_sent" href="/paymentrequests_sent">Payment Requests Sent</a>
+    <a id="paymentrequests_received" href="/paymentrequests_received">Payment Request Received</a>
+    <a href="/logout" id="logout" th:text="'Logout ' + ${session.user.name}">Logout Person</a>
+</nav>
+
+<main>
+    <div layout:fragment="contents">
+    </div>
+</main>
+</body>
+</html>

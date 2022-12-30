@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{/layout.html}">
+<head></head>
+<body>
+<div layout:fragment="contents">
+    <section class="expenseList">
+        <div>
+            <form method="post" action="/expenses" enctype="application/x-www-form-urlencoded">
+                <label for="Description">Description</label>
+                <input name="description" id="description" type="text" autofocus required>
+                <label for="date">Date(dd/mm/yyyy e.g 21/10/2021)</label>
+                <input name="date" id="date" type="date" autofocus required>
+                <label for="amount">Amount(no cents allowed)</label>
+                <input name="amount" id="amount" type="text" autofocus required>
+                <input id="submit" type="submit" value="Submit"/>
+            </form>
+        </div>
+    </section>
+</div>
+</body>
+
+</html>

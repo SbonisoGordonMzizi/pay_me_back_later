@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout.html}"
+      lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+    </head>
+
+    <body>
+        <div layout:fragment="contents">
+
+            <section class="paymentRequestsSent">
+                <h2>People that you owe</h2>
+                <p id="no_payment_requests_sent" th:if="${#lists.isEmpty(paymentrequests_sent)}">Nobody owes you anything!</p>
+            </section>
+
+            <div id="payments" th:unless="${#lists.isEmpty(paymentrequests_sent)}">
+                <div>
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>Who</th>
+                                <th>What</th>
+                                <th>Due in (days)</th>
+                                <th>How much</th>
+                            </tr>
+                        </thead>
+
+
+                        <tbody>
+                        <th:block th:each="payments: ${paymentrequests_sent}">
+                            <tr>
+                                <td><p><span th:text="${payments.getPersonWhoShouldPayBack().getName()}"></span></p></td>
+                                <td><p><span th:text="${payments.getDescription()}"></span></p></td>
+                                <td><p><span th:text="${payments.daysLeftToPay()}"></span></p></td>
+                                <td><p><span th:text="${payments.getAmountToPay()}"></span></p></td>
+                            </tr>
+                        </th:block>
+
+                        </tbody>
+
+                        <tfoot>
+                            <tr>
+                                <td><p><span></span>Total unpaid</p></td>
+                                <td><p><span></span></p></td>
+                                <td><p><span></span></p></td>
+                                <td><p><span id="grand_total" th:text="${totalSent}"></span></p></td>
+                            </tr>
+                        </tfoot>
+
+                    </table>
+
+                </div>
+            </div>
+        </div>
+
+    </body>
+
+</html>

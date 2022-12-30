@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{/layout.html}"
+        lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+    </head>
+    <body>
+        <div layout:fragment="contents">
+            <section class="paymentRequestsReceived">
+                <h2>People that owe me</h2>
+                <p id="no_payment_requests_received" th:if="${#lists.isEmpty(paymentrequests_received)}">You don't owe anyone anything!</p>
+                <div id = "payment_requests_recieved" th:unless="${#lists.isEmpty(paymentrequests_received)}">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>Who</th>
+                                <th>What</th>
+                                <th>Due in (Days)</th>
+                                <th>How Much</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <th:block th:each="received: ${paymentrequests_received}">
+                                <tr>
+                                    <td><p><span th:text="${received.getPersonRequestingPayment().getName()}"> </span></p></td>
+                                    <td><p><span th:text="${received.getDescription()}"> </span></p></td>
+                                    <td><p><span th:text="${received.daysLeftToPay()}"> </span></p></td>
+                                    <td><p><span id="grand_total" th:text="${received.getAmountToPay()}"> </span></p></td>
+                                    <td>
+                                        <div th:if="${!received.isPaid()}">
+                                            <form method="post" action="paymentrequests_received">
+                                                <input type="hidden" th:value="${received.getId()}" id="expenseId" name="expenseId">
+                                                <input id="submit" type="submit" value="Pay"/>
+                                            </form>
+                                        </div>
+                                        <div th:if="${received.isPaid()}">
+                                            <input id="paid_1" type="checkbox" checked>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </th:block>
+                            </tbody>
+                            <tfoot>
+                            <td><p><span>Total unpaid </span></p></td>
+                            <td><p><span > </span></p></td>
+                            <td><p><span> </span></p></td>
+                            <td><p><span id="grand_total" th:text="${moneyOwed}"></span></p></td>
+                            <td></td>
+                            </tfoot>
+                        </table>
+                    </div>
+            </section>
+        </div>
+    </body>
+</html>
